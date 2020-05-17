@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-root',
-  template: `
+    selector: 'app-root',
+    template: `
     <!--The content below is only a placeholder and can be replaced.-->
     <div style="text-align:center" class="content">
       <h1>
@@ -25,32 +26,52 @@ import { Component } from '@angular/core';
     </ul>
     
   `,
-  styles: []
+    styles: []
 })
 export class AppComponent {
     title = 'RXJS';
-    
-    minhaPromise(nome: string): Promise<string> { 
-        return new Promise((resolve, reject) => { 
+
+    minhaPromise(nome: string): Promise<string> {
+        return new Promise((resolve, reject) => {
             if (nome === 'Italo') {
                 setTimeout(() => {
                     resolve('Seja bem vindo ' + nome);
                 }, 1000);
             }
-            else { 
+            else {
                 reject('Ops! você não é o Italo');
             }
         })
-    } 
+    }
+
+    minhaObservable(nome: String): Observable<string> {
+        return new Observable(subscribe => {
+            if (nome === 'Italo') {
+                subscribe.next('Olá' + nome);
+                subscribe.next('Ola denovo' + nome);
+                setTimeout(() => {
+                    subscribe.next('Resposta com delay ' + nome);
+                }, 5000);
+            }
+            else {
+                subscribe.error('Ops deu erro ');
+            }
+        });
+    }
+
     ngOnInit(): void {
         /*this.minhaPromise('Italo')
             .then(result => console.log(result));*/
-        
+
         //tratando erro da Promise quando houver 
-        this.minhaPromise('Filipe')
+        /* this.minhaPromise('Filipe')
         .then(result => console.log(result))
-        .catch(teste => console.log(teste));
+        .catch(teste => console.log(teste)); */
         
-        
+        //tratamento de erro da Observable
+        this.minhaObservable('Italo')
+            .subscribe(
+                result => console.log(result),
+                erro => console.log(erro));
     }
 }
