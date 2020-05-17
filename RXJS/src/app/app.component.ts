@@ -34,7 +34,7 @@ export class AppComponent {
         return new Promise((resolve, reject) => { 
             if (nome === 'Italo') {
                 setTimeout(() => {
-                    resolve('Seja bem vindo' + nome);
+                    resolve('Seja bem vindo ' + nome);
                 }, 1000);
             }
             else { 
@@ -43,8 +43,14 @@ export class AppComponent {
         })
     } 
     ngOnInit(): void {
-        this.minhaPromise('Italo')
-        .then(result => console.log(result));
+        /*this.minhaPromise('Italo')
+            .then(result => console.log(result));*/
+        
+        //tratando erro da Promise quando houver 
+        this.minhaPromise('Filipe')
+        .then(result => console.log(result))
+        .catch(teste => console.log(teste));
+        
         
     }
 }
