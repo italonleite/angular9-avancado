@@ -52,6 +52,7 @@ export class AppComponent {
                 setTimeout(() => {
                     subscribe.next('Resposta com delay ' + nome);
                 }, 5000);
+                subscribe.complete();
             }
             else {
                 subscribe.error('Ops deu erro ');
@@ -69,9 +70,18 @@ export class AppComponent {
         .catch(teste => console.log(teste)); */
         
         //tratamento de erro da Observable
-        this.minhaObservable('Italo')
+       /*  this.minhaObservable('Italo')
             .subscribe(
                 result => console.log(result),
-                erro => console.log(erro));
+                erro => console.log(erro)); */
+        
+        //estrutura de uma observer
+        const observer = {
+            next: valor => console.log('Next', valor),
+            error: erro => console.log('Erro', erro),
+            complete: () => console.log('FIM')        
+        }
+        const obs = this.minhaObservable('');
+        obs.subscribe(observer);
     }
 }
