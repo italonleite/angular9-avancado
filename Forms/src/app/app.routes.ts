@@ -6,6 +6,6 @@ import { CadastroComponent } from './demo/reactiveForms/cadastro/cadastro.compon
 export const rootRouterConfig: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent},
-    { path: 'sobre', component: SobreComponent }
-    { path: 'cadastrk', component: CadastroComponent }
+    { path: 'sobre', component: SobreComponent },
+    { path: 'cadastro', component: CadastroComponent }
 ];
