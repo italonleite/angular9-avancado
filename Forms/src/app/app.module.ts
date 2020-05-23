@@ -20,7 +20,7 @@ import { CadastroComponent } from './demo/reactiveForms/cadastro/cadastro.compon
     HomeComponent,
     FooterComponent,
     SobreComponent,
-    CadastroComponent
+    CadastroComponent,
   
   ],
   imports: [
